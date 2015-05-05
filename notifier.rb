@@ -35,12 +35,9 @@ post '/' do
     return 401 # We got an event we shouldn't have.
   end
 
-  return message
   tn = Net::Telnet.new('Host' => settings.mush_host, 'Port' => settings.mush_port)
-  tn.write settings.mush_connect_string + "\n"
-  messages.each do |msg|
-    tn.write "#{msg}\n"
-  end
+  tn.write "#{settings.mush_connect_string}\n"
+  tn.write "#{settings.command_prefix} #{message}\n"
   tn.write "QUIT\n"
   tn.close
 
