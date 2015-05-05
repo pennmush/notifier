@@ -21,7 +21,7 @@ post '/' do
   sender_name = settings.names.has_key?(github_sender_name) ? settings.names[github_sender_name] : github_sender_name
 
   if payload["comment"]
-    message = "#{sender_name} added a comment to issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["comment"]["url"]}"
+    message = "#{sender_name} added a comment to issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["comment"]["html_url"]}"
   elsif payload["issue"]
     return unless ["opened", "closed", "reopened"].include? payload["action"]
     message = "#{sender_name} #{payload["action"]} issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["issue"]["html_url"]}"
