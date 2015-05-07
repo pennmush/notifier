@@ -21,16 +21,16 @@ post '/' do
   sender_name = settings.names.has_key?(github_sender_name) ? settings.names[github_sender_name] : github_sender_name
 
   if payload["comment"]
-    message = "#{sender_name} added a comment to issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["comment"]["html_url"]}"
+    message = "[ansi(h,#{sender_name})] added a comment to issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["comment"]["html_url"]}"
   elsif payload["issue"]
     return unless ["opened", "closed", "reopened"].include? payload["action"]
-    message = "#{sender_name} #{payload["action"]} issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["issue"]["html_url"]}"
+    message = "[ansi(h,#{sender_name})] #{payload["action"]} issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["issue"]["html_url"]}"
   elsif payload["pull_request"]
     return unless ["opened", "closed", "reopened"].include? payload["action"]
-    message = "#{sender_name} #{payload["action"]} PR ##{payload["pull_request"]["number"]} (#{payload["pull_request"]["title"]}). #{payload["pull_request"]["html_url"]}"
+    message = "[ansi(h,#{sender_name})] #{payload["action"]} PR ##{payload["pull_request"]["number"]} (#{payload["pull_request"]["title"]}). #{payload["pull_request"]["html_url"]}"
   elsif payload["commits"]
     return unless payload["ref"] == "refs/heads/master" # We only want to notify on pushes to master, not to branches.
-    message = "#{sender_name} pushed #{payload["commits"].count} commit#{payload["commits"].count == 1 ? '' : 's'} to master. #{payload["compare"]}"
+    message = "[ansi(h,#{sender_name})] pushed #{payload["commits"].count} commit#{payload["commits"].count == 1 ? '' : 's'} to master. #{payload["compare"]}"
   else
     return 401 # We got an event we shouldn't have.
   end
