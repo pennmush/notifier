@@ -27,7 +27,8 @@ post '/' do
     message = "[ansi(h,#{sender_name})] #{payload["action"]} issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["issue"]["html_url"]}"
   elsif payload["pull_request"]
     return unless ["opened", "closed", "reopened"].include? payload["action"]
-    message = "[ansi(h,#{sender_name})] #{payload["action"]} PR ##{payload["pull_request"]["number"]} (#{payload["pull_request"]["title"]}). #{payload["pull_request"]["html_url"]}"
+    action = payload["pull_request"]["merged"] ? "merged" : payload["action"] # Merged PRs still have a 'closed' action, so need to look for merged key.
+    message = "[ansi(h,#{sender_name})] #{action} PR ##{payload["pull_request"]["number"]} (#{payload["pull_request"]["title"]}). #{payload["pull_request"]["html_url"]}"
   elsif payload["commits"]
     return unless payload["ref"] == "refs/heads/master" # We only want to notify on pushes to master, not to branches.
     message = "[ansi(h,#{sender_name})] pushed #{payload["commits"].count} commit#{payload["commits"].count == 1 ? '' : 's'} to master. #{payload["compare"]}"
