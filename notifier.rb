@@ -21,17 +21,17 @@ post '/' do
   sender_name = settings.names.has_key?(github_sender_name) ? settings.names[github_sender_name] : github_sender_name
 
   if payload["comment"]
-    message = "[ansi(h,#{sender_name})] added a comment to issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["comment"]["html_url"]}"
+    message = "[ansi(h,lit(#{sender_name}))] added a comment to issue #[lit(#{payload["issue"]["number"]})] ([lit(#{payload["issue"]["title"]})]. [lit(#{payload["comment"]["html_url"]})]"
   elsif payload["issue"]
     return unless ["opened", "closed", "reopened"].include? payload["action"]
-    message = "[ansi(h,#{sender_name})] #{payload["action"]} issue ##{payload["issue"]["number"]} (#{payload["issue"]["title"]}). #{payload["issue"]["html_url"]}"
+    message = "[ansi(h,lit(#{sender_name}))] [lit(#{payload["action"]})] issue #[lit(#{payload["issue"]["number"]})] ([lit(#{payload["issue"]["title"]})]). [lit(#{payload["issue"]["html_url"]})]"
   elsif payload["pull_request"]
     return unless ["opened", "closed", "reopened"].include? payload["action"]
     action = payload["pull_request"]["merged"] ? "merged" : payload["action"] # Merged PRs still have a 'closed' action, so need to look for merged key.
-    message = "[ansi(h,#{sender_name})] #{action} PR ##{payload["pull_request"]["number"]} (#{payload["pull_request"]["title"]}). #{payload["pull_request"]["html_url"]}"
+    message = "[ansi(h,lit(#{sender_name}))] [lit(#{action})] PR #[lit(#{payload["pull_request"]["number"]})] ([lit(#{payload["pull_request"]["title"]})]). [lit(#{payload["pull_request"]["html_url"]})]"
   elsif payload["commits"]
     return unless payload["ref"] == "refs/heads/master" # We only want to notify on pushes to master, not to branches.
-    message = "[ansi(h,#{sender_name})] pushed #{payload["commits"].count} commit#{payload["commits"].count == 1 ? '' : 's'} to master. #{payload["compare"]}"
+    message = "[ansi(h,lit(#{sender_name}))] pushed [lit(#{payload["commits"].count})] commit#{payload["commits"].count == 1 ? '' : 's'} to master. [lit(#{payload["compare"]})]"
   else
     return 401 # We got an event we shouldn't have.
   end
