@@ -35,7 +35,7 @@ post '/' do
     message = "[ansi(h,#{sender_name})] #{mush_escape(action)} PR ##{mush_escape(payload["pull_request"]["number"])} (#{mush_escape(payload["pull_request"]["title"])}). #{mush_escape(payload["pull_request"]["html_url"])}"
   elsif payload["commits"]
     return unless payload["ref"] == "refs/heads/master" # We only want to notify on pushes to master, not to branches.
-    message = "[ansi(h,#{sender_name})] pushed #{payload["commits"].count} commit#{payload["commits"].count == 1 ? '' : 's'} to master. #{mush_escape(payload["compare"])})]"
+    message = "[ansi(h,#{sender_name})] pushed #{payload["commits"].count} commit#{payload["commits"].count == 1 ? '' : 's'} to master. #{mush_escape(payload["compare"])}"
   else
     return 401 # We got an event we shouldn't have.
   end
