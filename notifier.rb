@@ -50,5 +50,5 @@ post '/' do
 end
 
 def mush_escape(str)
-  str.gsub(/([\%\;\[\]\{\}\\\(\)\,\^\$])/, '%\1')
+  str.to_s.gsub(/([\%\;\[\]\{\}\\\(\)\,\^\$])/, '%\1')
 end
