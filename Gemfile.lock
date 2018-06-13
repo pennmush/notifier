@@ -2,6 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     json (2.1.0)
+    net-telnet (0.1.1)
     rack (1.6.10)
     rack-protection (1.5.5)
       rack
@@ -16,6 +17,7 @@ PLATFORMS
 
 DEPENDENCIES
   json
+  net-telnet
   sinatra (~> 1.x)
 
 RUBY VERSION

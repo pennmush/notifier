@@ -4,3 +4,4 @@ ruby '2.5.1'
 
 gem 'sinatra', '~> 1.x'
 gem 'json'
+gem 'net-telnet'
