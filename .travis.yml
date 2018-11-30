@@ -6,7 +6,8 @@ deploy:
   region: us-west-2
   role: arn:aws:iam::117102322406:role/service-role/penn-notifier
   runtime: ruby2.5
-  handler_name: lambda.handler
+  handler_name: handler
+  module_name: lambda
   on:
     branch: travis
   access_key_id: AKIAI3GENLLWA4X4JEPQ
