@@ -1,2 +1,14 @@
 install: bundle install --deployment
 script: ruby test.rb
+deploy:
+  provider: lambda
+  function_name: penn-notifier
+  region: us-west-2
+  role: arn:aws:iam::117102322406:role/service-role/penn-notifier
+  runtime: ruby2.5
+  handler_name: lambda.handler
+  on:
+    branch: travis
+  access_key_id: AKIAI3GENLLWA4X4JEPQ
+  secret_access_key:
+    secure: ach0WlSm0Qoupbr/U0kPXuCBdIKI8XoM12xly13hgfRdmkHY9ZAbPbVyT9zrib26yJuy2WgvYrxQNKpWvgCBAvgjWHHJ+MHh0zpwX3M/aYvj2kYwnQyN35ktsqKZcMrPQdhr/hU+4OmOwOCZxWutwe4a1CLP2Lj63kHpWbEQuLfBNOuhRsNHt4i11Ma03UEw5GStY8kgM3HkxI+8Z9rCbn+l81+oyBlM4ULRDZEbqGFIL1GCf+sN63q4vbEKuPJZJX7f9Dzr7Mg6ZrS7NsSLTEghNEHGtn0qMZs1xUwEUrgv0yfQCdNxZNY+EQg8dFmqV4NU7FRP3QfdIxBnAaMM3h8K2zpxzDl+ZaN/hqaETE2kPKH+XN0zv6k0ihPb6q4Km3amijuUqI6I7UngovigGgEEFK38ploF2NhhKFshY7Xxj7Q9/yubiCYxFeVljufByByjcLrmD4dCGuNqQVAei5CqkEzbSIzQkRISg3xLVBmhCPoo/TVbK8odRCvyOh9sMsIuZFF9JfaPXXUks+t+pTBmoOHA5y3gX8YomF6PP6ZqEhQEartmCJKWbkhEysnioL8mKHPSaX6VWFMVSis6T+H5+O2J7CXd106DtntfBSsq7yELU5UFzm/woBYYavhXgU6rnvEuIIgrh2nv9gW8d8hmtYp+7GGERlgO/mPDeDg=
