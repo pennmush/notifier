@@ -2,6 +2,7 @@
 
 ENV['RACK_ENV'] = 'test'
 
+require 'bundler/setup'
 require './notifier'
 require 'test/unit'
 require 'rack/test'
