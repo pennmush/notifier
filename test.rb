@@ -1,14 +1,21 @@
-require 'net/http'
-require 'uri'
+# Just a simple sanity check test.
 
-base_url = "http://localhost:9292/" # change as needed.
+ENV['RACK_ENV'] = 'test'
 
-# Sample payload, from the Github documentation.
-test_file = ARGV[0] || "push"
+require './notifier'
+require 'test/unit'
+require 'rack/test'
 
-json = File.read("tests/#{test_file}.json")
-puts "Running test with #{test_file}.json."
-res = Net::HTTP.post_form(URI.parse(base_url), {'payload' => json})
-puts "Status: #{res.code}"
-puts "Body:"
-puts res.body
+class HelloWorldTest < Test::Unit::TestCase
+  include Rack::Test::Methods
+
+  def app
+    Sinatra::Application
+  end
+
+  def test_it_says_hello_world
+    get '/'
+    assert last_response.ok?
+    assert last_response.body.include?('Notifier is set up and running properly')
+  end
+end
