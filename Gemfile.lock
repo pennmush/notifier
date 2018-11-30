@@ -3,6 +3,7 @@ GEM
   specs:
     json (2.1.0)
     net-telnet (0.1.1)
+    power_assert (1.1.3)
     rack (1.6.10)
     rack-protection (1.5.5)
       rack
@@ -12,6 +13,8 @@ GEM
       rack (~> 1.5)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
+    test-unit (3.2.8)
+      power_assert
     tilt (2.0.8)
 
 PLATFORMS
@@ -22,6 +25,7 @@ DEPENDENCIES
   net-telnet
   rack-test
   sinatra (~> 1.x)
+  test-unit
 
 RUBY VERSION
    ruby 2.5.1p57
