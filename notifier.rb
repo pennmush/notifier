@@ -19,7 +19,7 @@ end
 
 post '/' do
   payload = JSON.parse(params[:payload])
-  return unless payload["repository"]["full_name"] == "pennmush/pennmush" # Don't send notifications unless this is the real deal.
+  return unless payload["repository"]["full_name"].include? "pennmush/" # Don't send notifications unless this is the real deal.
 
   github_sender_name = payload["sender"]["login"]
   sender_name = mush_escape(settings.names.has_key?(github_sender_name) ? settings.names[github_sender_name] : github_sender_name)
