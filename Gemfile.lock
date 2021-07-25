@@ -1,21 +1,25 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    json (2.1.0)
-    net-telnet (0.1.1)
-    power_assert (1.1.3)
-    rack (1.6.11)
-    rack-protection (1.5.5)
+    json (2.5.1)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
+    net-telnet (0.2.0)
+    power_assert (2.0.0)
+    rack (2.2.3)
+    rack-protection (2.1.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    sinatra (1.4.8)
-      rack (~> 1.5)
-      rack-protection (~> 1.4)
-      tilt (>= 1.3, < 3)
-    test-unit (3.2.8)
+    ruby2_keywords (0.0.5)
+    sinatra (2.1.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.1.0)
+      tilt (~> 2.0)
+    test-unit (3.4.4)
       power_assert
-    tilt (2.0.8)
+    tilt (2.0.10)
 
 PLATFORMS
   ruby
@@ -24,11 +28,11 @@ DEPENDENCIES
   json
   net-telnet
   rack-test
-  sinatra (~> 1.x)
+  sinatra (~> 2.1)
   test-unit
 
 RUBY VERSION
-   ruby 2.5.3p105
+   ruby 2.6.8p205
 
 BUNDLED WITH
    1.17.2
