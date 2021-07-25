@@ -3,8 +3,8 @@ require 'json'
 require 'net/telnet'
 require 'yaml'
 
-set :mush_host, ENV['NOTIFIER_HOST']
-set :mush_port, ENV['NOTIFIER_PORT']
+set :mush_host, ENV['NOTIFIER_HOST'] || "localhost"
+set :mush_port, ENV['NOTIFIER_PORT'] || 4201
 set :mush_connect_string, ENV['NOTIFIER_CONNECT_STRING']
 set :command_prefix, ENV['NOTIFIER_COMMAND_PREFIX']
 set :names, YAML.load_file('names.yml')
