@@ -7,15 +7,15 @@ GEM
     net-telnet (0.2.0)
     power_assert (2.0.0)
     rack (2.2.3)
-    rack-protection (2.1.0)
+    rack-protection (2.2.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     ruby2_keywords (0.0.5)
-    sinatra (2.1.0)
+    sinatra (2.2.0)
       mustermann (~> 1.0)
       rack (~> 2.2)
-      rack-protection (= 2.1.0)
+      rack-protection (= 2.2.0)
       tilt (~> 2.0)
     test-unit (3.4.4)
       power_assert
@@ -28,7 +28,7 @@ DEPENDENCIES
   json
   net-telnet
   rack-test
-  sinatra (~> 2.1)
+  sinatra (~> 2.2)
   test-unit
 
 RUBY VERSION
